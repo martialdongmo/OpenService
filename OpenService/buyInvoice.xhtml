@@ -1,0 +1,141 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Facture Client</title>
+         <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+ 
+                        <ui:include src ="/inc/menuInvoice.xhtml"/>
+    </h:form>
+           
+   <h:form id="buyPagePrint">
+   <p:panel id="buyPageFieldPrint">
+   <fieldset>
+    <p><p:outputLabel rendered="#{!empty commandeListBean.commandesBuyed}" value="Facture numéro #{ buyListBean.buy.id }"  /></p>
+   <legend>Facture du client</legend>
+    <p:messages globalOnly="true" infoClass="info" />
+    <table><tr><td>
+   <legend>Detail sur le client</legend>
+        <div id="corpsClient">
+        <p class="info">#{ form.resultat }</p>
+            <p><p:outputLabel for="nomClient" > Nom : </p:outputLabel>
+            <p:outputLabel id="nomClient"  value= "#{ buyListBean.buy.commandes[0].customer.nom }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="nomMessage" for="nomClient" errorClass="erreur" label="nomClient" requiredMessage="#{msg['client.nom']}" />	        
+
+	          <br /></p>
+	          
+	          <p><p:outputLabel for="prenomClient" > Prenom : </p:outputLabel>
+            <p:outputLabel id="prenomClient"  value= "#{buyListBean.buy.commandes[0].customer.prenom }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="prenomMessage" for="prenomClient" errorClass="erreur" label="prenomClient" requiredMessage="#{msg['client.prenom']}" />	        
+
+	          <br /></p>
+	          <p><p:outputLabel for="adresseClient" > Adresse : </p:outputLabel>
+            <p:outputLabel id="adresseClient"  value= "#{ buyListBean.buy.commandes[0].customer.adresse }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="adresseMessage" for="adresseClient" errorClass="erreur" label="adresseClient" requiredMessage="#{msg['client.adresse']}" />	        
+ 				 <br /></p>
+ 				
+ 				</div>
+ 				
+ 				</td><td>
+ 				<div id="corpsClient2">
+	         
+	          <p><p:outputLabel for="numeroDeTelephoneClient" > Telephone : </p:outputLabel>
+            <p:outputLabel id="numeroDeTelephoneClient"  value= "#{ buyListBean.buy.commandes[0].customer.telephone }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="numeroDeTelephoneMessage" for="numeroDeTelephoneClient" errorClass="erreur" label="numeroDeTelephoneClient" requiredMessage="#{msg['client.numeroDeTelephone']}" />	        
+
+	          <br /></p>
+	          <p><p:outputLabel for="emailClient" > Email : </p:outputLabel>
+            <p:outputLabel id="emailClient"  value= "#{ buyListBean.buy.commandes[0].customer.email }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="emailMessage" for="emailClient" errorClass="erreur" label="emailClient" requiredMessage="#{msg['client.email']}" />	        
+
+	          <br /></p>
+        
+        
+        </div>
+        </td><td>
+   <legend>Detail sur l'achat</legend>
+        <div id="corps">
+        
+            <p class="info">#{ form.resultat }</p>
+             <p><p:outputLabel size="30" value="Facture numéro #{ buyListBean.buy.id }" style="font-weight:bold"/></p>
+    		<p><p:outputLabel for="typeBuy" > Type de paiement : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="typeBuy"  value= "#{ buyListBean.buy.type_Buy.description }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="typeMessage" for="typeBuy" errorClass="erreur" label="typeBuy" requiredMessage="#{msg['buy.date2']}" />	        
+
+	          <br /></p>
+                
+            <p><p:outputLabel for="dateBuy" > Date de l'achat : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="dateBuy"  value= "#{ buyListBean.buy.date2 }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="dateMessage" for="dateBuy" errorClass="erreur" label="DateBuy" requiredMessage="#{msg['buy.date2']}" />	        
+
+	          <br /></p>
+	          
+            <p><p:outputLabel for="designationBuy" > Designation : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="designationBuy"  value= "#{ buyListBean.buy.designation }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="designationMessage" for="designationBuy" errorClass="erreur" label="designationBuy" requiredMessage="#{msg['buy.designation']}" />	        
+
+	          <br /></p>
+	          
+            <p><p:outputLabel for="quantitéBuy" > Quantité :  </p:outputLabel>
+            <p:outputLabel id="quantitéBuy"  value= "#{ buyListBean.buy.quantité }" required="true" size="30" maxlength="30" style="font-weight:bold" />
+            <p:message id="quantitéMessage" for="quantitéBuy" errorClass="erreur" label="quantitéBuy" requiredMessage="#{msg['buy.quantité']}" />	        
+
+	          <br /></p>
+	          </div>
+	          </td><td>
+	          <div id="corps2">
+	          
+            <p:outputLabel for="montantBuy" > Montant Marchandise : </p:outputLabel>
+            <p:outputLabel id="montantBuy"  value= "#{ buyListBean.buy.negotiatedAmount } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="montantMessage" for="montantBuy" errorClass="erreur" label="MontantBuy" requiredMessage="#{msg['buy.negotiatedAmount']}" />	        
+
+	          <br />
+	          
+            <p:outputLabel for="amount_depositBuy" > Montant Versé : </p:outputLabel>
+            <p:outputLabel id="amount_depositBuy"  value= "#{ buyListBean.buy.amount_deposit } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:message id="amount_depositMessage" for="amount_depositBuy" errorClass="erreur" label="Amount_depositBuy" requiredMessage="#{msg['buy.amount_deposit']}" />	        
+
+	          <br />
+	          
+	          
+	           <p:outputLabel> Montant Crédit : </p:outputLabel>
+            <p:outputLabel value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
+            <p:outputLabel  value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
+           
+	          <br />
+	          <p:outputLabel> Montant Rémise : </p:outputLabel>
+            <p:outputLabel   value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
+            <p:outputLabel   value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
+            
+	          <br />
+        
+        
+        </div>
+        </td></tr></table>
+        
+        <table><tr><td>
+             <legend>Detail sur les Articles</legend> 
+              <ui:include src="/inc/itemBuyedArticlesListInvoice.xhtml" />
+        </td>
+        </tr></table>
+          </fieldset>
+          </p:panel>
+          <br/>
+          <center><p:commandButton value="Imprimer votre facture" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px" onclick="print();">
+    <p:printer target=":buyPagePrint:buyPageFieldPrint" />
+</p:commandButton></center>
+       
+                
+        </h:form>
+        
+    </h:body>
+</html>
