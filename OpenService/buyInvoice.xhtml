@@ -19,12 +19,12 @@ xmlns:p="http://primefaces.org/ui"
            
    <h:form id="buyPagePrint">
    <p:panel id="buyPageFieldPrint">
-   <fieldset>
-    <p><p:outputLabel rendered="#{!empty commandeListBean.commandesBuyed}" value="Facture numéro #{ buyListBean.buy.id }"  /></p>
+
+    <p><p:outputLabel rendered="#{empty commandeListBean.commandesBuyed}" value="Facture numéro #{ buyListBean.buy.id }"  /></p>
    <legend>Facture du client</legend>
     <p:messages globalOnly="true" infoClass="info" />
     <table><tr><td>
-   <legend>Detail sur le client</legend>
+ 
         <div id="corpsClient">
         <p class="info">#{ form.resultat }</p>
             <p><p:outputLabel for="nomClient" > Nom : </p:outputLabel>
@@ -38,46 +38,23 @@ xmlns:p="http://primefaces.org/ui"
             <p:message id="prenomMessage" for="prenomClient" errorClass="erreur" label="prenomClient" requiredMessage="#{msg['client.prenom']}" />	        
 
 	          <br /></p>
-	          <p><p:outputLabel for="adresseClient" > Adresse : </p:outputLabel>
-            <p:outputLabel id="adresseClient"  value= "#{ buyListBean.buy.commandes[0].customer.adresse }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
-            <p:message id="adresseMessage" for="adresseClient" errorClass="erreur" label="adresseClient" requiredMessage="#{msg['client.adresse']}" />	        
- 				 <br /></p>
- 				
- 				</div>
- 				
- 				</td><td>
- 				<div id="corpsClient2">
-	         
-	          <p><p:outputLabel for="numeroDeTelephoneClient" > Telephone : </p:outputLabel>
-            <p:outputLabel id="numeroDeTelephoneClient"  value= "#{ buyListBean.buy.commandes[0].customer.telephone }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
-            <p:message id="numeroDeTelephoneMessage" for="numeroDeTelephoneClient" errorClass="erreur" label="numeroDeTelephoneClient" requiredMessage="#{msg['client.numeroDeTelephone']}" />	        
-
-	          <br /></p>
-	          <p><p:outputLabel for="emailClient" > Email : </p:outputLabel>
-            <p:outputLabel id="emailClient"  value= "#{ buyListBean.buy.commandes[0].customer.email }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
-            <p:message id="emailMessage" for="emailClient" errorClass="erreur" label="emailClient" requiredMessage="#{msg['client.email']}" />	        
-
-	          <br /></p>
-        
-        
-        </div>
-        </td><td>
-   <legend>Detail sur l'achat</legend>
-        <div id="corps">
-        
-            <p class="info">#{ form.resultat }</p>
-             <p><p:outputLabel size="30" value="Facture numéro #{ buyListBean.buy.id }" style="font-weight:bold"/></p>
-    		<p><p:outputLabel for="typeBuy" > Type de paiement : <span class="requis">*</span></p:outputLabel>
-            <p:outputLabel id="typeBuy"  value= "#{ buyListBean.buy.type_Buy.description }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
-            <p:message id="typeMessage" for="typeBuy" errorClass="erreur" label="typeBuy" requiredMessage="#{msg['buy.date2']}" />	        
-
-	          <br /></p>
-                
-            <p><p:outputLabel for="dateBuy" > Date de l'achat : <span class="requis">*</span></p:outputLabel>
+	           <p><p:outputLabel for="dateBuy" > Date de l'achat : <span class="requis">*</span></p:outputLabel>
             <p:outputLabel id="dateBuy"  value= "#{ buyListBean.buy.date2 }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
             <p:message id="dateMessage" for="dateBuy" errorClass="erreur" label="DateBuy" requiredMessage="#{msg['buy.date2']}" />	        
 
 	          <br /></p>
+ 				</div>
+ 				
+ 				</td>
+        <td>
+   
+        <div id="corps">
+        
+            
+             <p><p:outputLabel size="30" value="Facture numéro #{ buyListBean.buy.id }" style="font-weight:bold"/></p>
+
+                
+           
 	          
             <p><p:outputLabel for="designationBuy" > Designation : <span class="requis">*</span></p:outputLabel>
             <p:outputLabel id="designationBuy"  value= "#{ buyListBean.buy.designation }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
@@ -111,13 +88,7 @@ xmlns:p="http://primefaces.org/ui"
             <p:outputLabel value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
             <p:outputLabel  value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
            
-	          <br />
-	          <p:outputLabel> Montant Rémise : </p:outputLabel>
-            <p:outputLabel   value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
-            <p:outputLabel   value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
-            
-	          <br />
-        
+	          
         
         </div>
         </td></tr></table>
@@ -126,16 +97,32 @@ xmlns:p="http://primefaces.org/ui"
              <legend>Detail sur les Articles</legend> 
               <ui:include src="/inc/itemBuyedArticlesListInvoice.xhtml" />
         </td>
-        </tr></table>
-          </fieldset>
+        </tr>
+        
+        
+        </table>
+        
           </p:panel>
           <br/>
           <center><p:commandButton value="Imprimer votre facture" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px" onclick="print();">
     <p:printer target=":buyPagePrint:buyPageFieldPrint" />
 </p:commandButton></center>
-       
-                
+
         </h:form>
+     <center>   <table class="tab">
+     <tr><td>
+              <p:outputLabel> Le Client </p:outputLabel>
+               </td>
+               <td width="800">
+              <p:outputLabel></p:outputLabel>
+               </td>
+               <td>
+              <p:outputLabel> La Direction </p:outputLabel>
+               </td>
+        </tr>
+        
+        
+        </table></center>
         
     </h:body>
 </html>
