@@ -10,6 +10,18 @@ xmlns:p="http://primefaces.org/ui"
         <meta charset="utf-8" />
         <title>Facture Client</title>
          <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    
+    <style>
+p.serif {
+  font-family: "Times New Roman", Times, serif;
+}
+
+p.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+    
+    
     </h:head>
     <h:body>
         <h:form id="menuForm">
@@ -20,26 +32,26 @@ xmlns:p="http://primefaces.org/ui"
    <h:form id="buyPagePrint">
    <p:panel id="buyPageFieldPrint">
 
-    <p><p:outputLabel rendered="#{empty commandeListBean.commandesBuyed}" value="Facture numéro #{ buyListBean.buy.id }"  /></p>
+    <p class="serif"><p:outputLabel rendered="#{empty commandeListBean.commandesBuyed}" value="Facture numéro #{ buyListBean.buy.id }"  /></p>
    <legend>Facture du client</legend>
     <p:messages globalOnly="true" infoClass="info" />
     <table><tr><td>
  
         <div id="corpsClient">
         <p class="info">#{ form.resultat }</p>
-            <p><p:outputLabel for="nomClient" > Nom : </p:outputLabel>
-            <p:outputLabel id="nomClient"  value= "#{ buyListBean.buy.commandes[0].customer.nom }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p class="serif"><p:outputLabel for="nomClient" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Nom : </p:outputLabel>
+            <p:outputLabel id="nomClient"  value= "#{ buyListBean.buy.commandes[0].customer.nom }" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"/>
             <p:message id="nomMessage" for="nomClient" errorClass="erreur" label="nomClient" requiredMessage="#{msg['client.nom']}" />	        
 
 	          <br /></p>
 	          
-	          <p><p:outputLabel for="prenomClient" > Prenom : </p:outputLabel>
-            <p:outputLabel id="prenomClient"  value= "#{buyListBean.buy.commandes[0].customer.prenom }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+	          <p class="serif"><p:outputLabel for="prenomClient" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Prenom : </p:outputLabel>
+            <p:outputLabel id="prenomClient"  value= "#{buyListBean.buy.commandes[0].customer.prenom }" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"/>
             <p:message id="prenomMessage" for="prenomClient" errorClass="erreur" label="prenomClient" requiredMessage="#{msg['client.prenom']}" />	        
 
 	          <br /></p>
-	           <p><p:outputLabel for="dateBuy" > Date de l'achat : <span class="requis">*</span></p:outputLabel>
-            <p:outputLabel id="dateBuy"  value= "#{ buyListBean.buy.date2 }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+	           <p class="serif"><p:outputLabel for="dateBuy" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Date de l'achat : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="dateBuy"  value= "#{ buyListBean.buy.date2 }" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"/>
             <p:message id="dateMessage" for="dateBuy" errorClass="erreur" label="DateBuy" requiredMessage="#{msg['buy.date2']}" />	        
 
 	          <br /></p>
@@ -56,14 +68,14 @@ xmlns:p="http://primefaces.org/ui"
                 
            
 	          
-            <p><p:outputLabel for="designationBuy" > Designation : <span class="requis">*</span></p:outputLabel>
-            <p:outputLabel id="designationBuy"  value= "#{ buyListBean.buy.designation }" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p><p:outputLabel for="designationBuy" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Designation : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="designationBuy"  value= "#{ buyListBean.buy.designation }" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"/>
             <p:message id="designationMessage" for="designationBuy" errorClass="erreur" label="designationBuy" requiredMessage="#{msg['buy.designation']}" />	        
 
 	          <br /></p>
 	          
-            <p><p:outputLabel for="quantitéBuy" > Quantité :  </p:outputLabel>
-            <p:outputLabel id="quantitéBuy"  value= "#{ buyListBean.buy.quantité }" required="true" size="30" maxlength="30" style="font-weight:bold" />
+            <p><p:outputLabel for="quantitéBuy" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Quantité :  </p:outputLabel>
+            <p:outputLabel id="quantitéBuy"  value= "#{ buyListBean.buy.quantité }" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold" />
             <p:message id="quantitéMessage" for="quantitéBuy" errorClass="erreur" label="quantitéBuy" requiredMessage="#{msg['buy.quantité']}" />	        
 
 	          <br /></p>
@@ -71,22 +83,22 @@ xmlns:p="http://primefaces.org/ui"
 	          </td><td>
 	          <div id="corps2">
 	          
-            <p:outputLabel for="montantBuy" > Montant Marchandise : </p:outputLabel>
-            <p:outputLabel id="montantBuy"  value= "#{ buyListBean.buy.negotiatedAmount } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold"/>
+            <p:outputLabel for="montantBuy" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Montant Marchandise : </p:outputLabel>
+            <p:outputLabel id="montantBuy"  value= "#{ buyListBean.buy.negotiatedAmount } FCFA" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"/>
             <p:message id="montantMessage" for="montantBuy" errorClass="erreur" label="MontantBuy" requiredMessage="#{msg['buy.negotiatedAmount']}" />	        
 
 	          <br />
 	          
-            <p:outputLabel for="amount_depositBuy" > Montant Versé : </p:outputLabel>
+            <p:outputLabel for="amount_depositBuy" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Montant Versé : </p:outputLabel>
             <p:outputLabel id="amount_depositBuy"  value= "#{ buyListBean.buy.amount_deposit } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold"/>
             <p:message id="amount_depositMessage" for="amount_depositBuy" errorClass="erreur" label="Amount_depositBuy" requiredMessage="#{msg['buy.amount_deposit']}" />	        
 
 	          <br />
 	          
 	          
-	           <p:outputLabel> Montant Crédit : </p:outputLabel>
-            <p:outputLabel value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
-            <p:outputLabel  value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
+	           <p:outputLabel style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Montant Crédit : </p:outputLabel>
+            <p:outputLabel value= "#{ buyListBean.buy.remaining } FCFA" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy != 0}"/>
+            <p:outputLabel  value= "0.000 FCFA" required="true" size="30" maxlength="30" style="font-family: Arial, Helvetica, sans-serif;font-weight:bold" rendered="#{buyListBean.buy.commandes[0].orderArticles[0].status_Buy == 0}"/>
            
 	          
         
@@ -111,13 +123,13 @@ xmlns:p="http://primefaces.org/ui"
         </h:form>
      <center>   <table class="tab">
      <tr><td>
-              <p:outputLabel> Le Client </p:outputLabel>
+              <p:outputLabel style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> Le Client </p:outputLabel>
                </td>
                <td width="800">
               <p:outputLabel></p:outputLabel>
                </td>
                <td>
-              <p:outputLabel> La Direction </p:outputLabel>
+              <p:outputLabel style="font-family: Arial, Helvetica, sans-serif;font-weight:bold"> La Direction </p:outputLabel>
                </td>
         </tr>
         
